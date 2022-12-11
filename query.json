@@ -1,0 +1,20 @@
+{
+  "$match": {
+    "mint": "357hAqgreFMBtfP2GvVgY5kP8f4N9vNoDSQ3w6dydV7o",
+    "txType": "exchange",
+    "source": {
+      "$nin": [
+        "yawww",
+        "solanart",
+        "tensortrade",
+        "hadeswap",
+        "coralcube_v2",
+        "elixir_buy",
+        "elixir_sell",
+        "hyperspace"
+      ]
+    }
+  },
+  "$sort": { "blockTime": -1, "createdAt": -1 },
+  "$skip": 0
+}
