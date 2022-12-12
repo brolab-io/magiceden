@@ -11,43 +11,37 @@
     <div class="container">
       <form id="create-room">
         <div class="input-container">
-          <label for="collection-symbol">Collection Symbol</label>
+          <label for="collection-symbol">Collection Link</label>
           <input
             id="collection-symbol"
             type="text"
-            placeholder="Enter Collection Symbol"
-            value="misty_mallory"
-          />
-        </div>
-        <div class="input-container">
-          <label for="royalty">Royalty (From 0 - 10000, ex: 1000 = 10%)</label>
-          <input
-            id="royalty"
-            type="number"
-            placeholder="Enter Collection Royalty"
-            min="0"
-            max="10000"
+            placeholder="Eg: https://magiceden.io/marketplace/misty_mallory"
             value=""
           />
         </div>
+
         <div class="input-container">
-          <label for="policy">Policy (From 0 - 10000, ex: 1000 = 10%)</label>
-          <input
-            id="policy"
-            type="number"
-            placeholder="Enter Collection Royalty Policy"
-            min="0"
-            max="10000"
-            value=""
-          />
+          <ul>
+            <label for="policy" style="margin-left: -40px"
+              >Minimum royalty for entering the room.</label
+            >
+            <li>0% means no need to pay royalty fee.</li>
+            <li>100% means you need to pay 100% of the royalty fee.</li>
+          </ul>
+          <select id="policy">
+            <option value="0">0%</option>
+            <option value="50">50%</option>
+            <option value="100">100%</option>
+          </select>
         </div>
+
         <button type="submit">Create Room</button>
         <p id="room-url" style="color: #fff; display: none">
           Your room URL is: <br />
           <a href="" target="_blank"></a>
         </p>
-      </div>
-      </form>      
+      </form>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

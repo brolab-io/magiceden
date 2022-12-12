@@ -4,10 +4,6 @@ import { join } from 'path';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
-// Fix hbs not found
-import * as hbs from 'hbs';
-
-console.log(hbs);
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

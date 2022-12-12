@@ -1,5 +1,5 @@
 function createRoom(data) {
-  return fetch(`/rooms`, {
+  return fetch('/rooms', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -12,17 +12,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const form = document.getElementById('create-room');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const collection_symbol = form.elements['collection-symbol'].value;
-    const royalty = form.elements['royalty'].value * 1;
+    const collection_link = form.elements['collection-symbol'].value;
+    const collection_symbol = collection_link.split('/').pop();
     const policy = form.elements['policy'].value * 1;
 
     if (!collection_symbol) {
       alert('Collection symbol is required');
-      return;
-    }
-
-    if (royalty !== 0 && !royalty) {
-      alert('Royalty is required');
       return;
     }
 
@@ -31,26 +26,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    if (royalty < 0 || royalty > 10000) {
-      alert('Royalty must be between 0 and 10000');
-      return;
-    }
-
-    if (policy < 0 || policy > 10000) {
-      alert('Policy must be between 0 and 10000');
+    if (policy < 0 || policy > 100) {
+      alert('Policy must be between 0 and 100');
       return;
     }
 
     await createRoom({
       collection_symbol,
-      royalty,
       policy,
     });
 
     const roomURL = document.getElementById('room-url');
+    roomURL.style.display = 'block';
     const roomURLLink = roomURL.querySelector('a');
     roomURLLink.href = `${window.location.origin}/rooms/${collection_symbol}`;
     roomURLLink.innerText = `${window.location.origin}/rooms/${collection_symbol}`;
-    roomURL.style.display = 'block';
   });
 });

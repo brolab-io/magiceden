@@ -61,16 +61,17 @@ export class NftService {
 
   async getCollectionActivityNfts(collection: string, wallet: string) {
     const tokens: any = await this.getUserTokens(wallet);
+    // console.log(tokens[0]);
 
-    console.log('getCollectionActivityNfts found tokens', tokens.length);
+    // console.log('getCollectionActivityNfts found tokens', tokens.length);
     const tokensInCollection = tokens.filter(
       (token: any) => token.collection === collection,
     );
 
-    console.log(
-      'getCollectionActivityNfts found tokensInCollection',
-      tokensInCollection.length,
-    );
+    // console.log(
+    //   'getCollectionActivityNfts found tokensInCollection',
+    //   tokensInCollection.length,
+    // );
     const tokenActivities = await Promise.all(
       tokensInCollection.map((token: any) =>
         this.getLatestMintActivity(token.mintAddress),
@@ -78,10 +79,11 @@ export class NftService {
     );
 
     return Promise.all(
-      tokenActivities.map((activity: any) => {
+      tokenActivities.map((activity: any, index) => {
         return this.getsolTransfersByTransactionId(activity.signature).then(
           (solTransfers: any) => ({
             ...activity,
+            tokenData: tokensInCollection[index],
             solTransfers,
           }),
         );

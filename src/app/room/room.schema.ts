@@ -6,10 +6,7 @@ export class Room {
   @Prop({ required: true })
   collection_symbol: string;
 
-  @Prop({ required: true, default: 0 })
-  royalty: number;
-
-  @Prop({ required: true, default: 0 })
+  @Prop({ required: true, default: 0, min: 0, max: 100 })
   policy: number;
 }
 

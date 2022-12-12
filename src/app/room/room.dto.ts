@@ -7,11 +7,6 @@ export class CreateRoomDto {
 
   @IsNumber()
   @Min(0)
-  @Max(10000)
-  royalty: number;
-
-  @IsNumber()
-  @Min(0)
-  @Max(10000)
+  @Max(100)
   policy: number;
 }

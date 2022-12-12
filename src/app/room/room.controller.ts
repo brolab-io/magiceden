@@ -58,7 +58,7 @@ export class RoomController {
 
   private async checkRoomAccess(room: RoomDocument, wallet: string) {
     try {
-      if (room.royalty === 0 || room.policy === 0) {
+      if (room.policy === 0) {
         return true;
       }
       const tokens = await this.roomService.getUserTokens(room, wallet);
@@ -69,18 +69,30 @@ export class RoomController {
           logs.push(`Token ${token.tokenMint} has no royalty fee`);
           continue;
         }
-        const totalAmount = token.solTransfers[1].amount;
-        const totalRoyalty = token.solTransfers[0].amount;
-        const percentage = (totalRoyalty / totalAmount) * 100;
-        if (percentage < room.policy) {
+        console.log(token);
+        const totalRoyalty = token.solTransfers[1].amount;
+        const totalAmount = token.solTransfers[0].amount;
+        const percentage = (totalRoyalty / totalAmount) * 10000;
+        console.log(
+          'percentage',
+          percentage,
+          `/${token.tokenData.sellerFeeBasisPoints}`,
+        );
+        const royaltyPercentage =
+          (percentage / token.tokenData.sellerFeeBasisPoints) * 100;
+        console.log(
+          `Token ${token.tokenMint} has royalty fee >= policy fee, required: ${room.policy}, got: ${royaltyPercentage}`,
+        );
+        if (royaltyPercentage < room.policy) {
           logs.push(
-            `Token ${token.tokenMint} has royalty fee < policy fee, required: ${room.policy}, got: ${percentage}`,
+            `Token ${token.tokenMint.slice(0, 6)}...${token.tokenMint.slice(
+              -4,
+            )} has ${royaltyPercentage}% royalty fee but required ${
+              room.policy
+            }%`,
           );
           continue;
         }
-        console.log(
-          `Token ${token.tokenMint} has royalty fee >= policy fee, required: ${room.policy}, got: ${percentage}`,
-        );
         return true;
       }
       logs.push(
