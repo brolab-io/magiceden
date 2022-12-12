@@ -4,7 +4,7 @@ Meta Gallery help collection owner turn **magic eden collection** into **web-bas
 
 - Demo is available at  [https://magiceden.brolab.io](https://magiceden.brolab.io/). 
 - Example 3D Gallery: https://magiceden.brolab.io/rooms/misty_mallory
-- Video demo: https://youtu.be/u72DrcgkrZo
+- Video demo: [[https://youtu.be/u72DrcgkrZo](https://youtu.be/GHtH1Mm2dLY)](https://youtu.be/GHtH1Mm2dLY)
 ## Benefit 
 - Amazing way to display collection
 - Increase your Sale
