@@ -1,0 +1,89 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Create 3D Room | Coralcube</title>
+    <meta
+      name='description'
+      content='MetaGallery - Turn your Coralcube collection to 3D gallery'
+    />
+    <meta property='og:image' content='create/sharing.jpg' />
+    <link rel='stylesheet' href='create/style.css' />
+  </head>
+  <body>
+    <nav>
+      <div class='logo'>
+        <img src='create/logo.svg' alt='Magic Den' />
+        <span>MetaGallery</span>
+      </div>
+      <div>
+        <a
+          target='_blank'
+          href='https://discord.gg/yC7bdWCEnx'
+          class='btn btn-outlined btn-small'
+        >
+          Join Discord
+        </a>
+      </div>
+    </nav>
+    <div class='container'>
+      <form id='create-room'>
+        <h1>
+          TURN YOUR
+          <span class='text-green'>CORALCUBE</span>
+          COLLECTION TO 3D GALLERY
+        </h1>
+        <div class='input-container'>
+          <label for='collection-symbol'>Collection Link</label>
+          <input
+            id='collection-symbol'
+            type='text'
+            placeholder='Eg: https://coralcube.io/collection/ls_the_hallowed'
+            value=''
+          />
+        </div>
+
+        <div class='input-container'>
+          <label for='collection-symbol'>Gallery Theme</label>
+          <select id='policy'>
+            <option value='1'>Theme 1</option>
+          </select>
+        </div>
+
+        <img src='create/theme-1.png' alt='Theme 1' class='theme-preview' />
+
+        <button type='submit'>Create Room</button>
+        <p id='room-url' style='color: #fff; display: none'>
+          Your room URL is:
+          <br />
+          <a href='' target='_blank'></a>
+        </p>
+      </form>
+    </div>
+    <script src='create/script.js'></script>
+    <footer>
+      <div>
+        <img class='footer-top' src='create/footer-top.svg' alt='' />
+        <img class='footer-bottom' src='create/footer-bottom.svg' alt='' />
+        <p>Don't miss out, join now for early access</p>
+        <a
+          target='_blank'
+          href='https://discord.gg/yC7bdWCEnx'
+          class='btn btn-outlined btn-small'
+        >
+          Join Discord
+        </a>
+      </div>
+      <div>
+        <div><span>Meta Gallery 2022- ALL rights reserved</span></div>
+        <div class='links'>
+          <a href='#'>Privacy Policy</a>
+          <a href='#'>Cookies</a>
+          <a href='#'>Terms &amp; Conditions </a>
+          <a href='#'>Contact Us</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

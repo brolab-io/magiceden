@@ -5,6 +5,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app/app.controller';
 import { NftModule } from './app/nft/nft.module';
 import { RoomModule } from './app/room/room.module';
+import { SpaceModule } from './app/space/space.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RoomModule } from './app/room/room.module';
     ScheduleModule.forRoot(),
     RoomModule,
     NftModule,
+    SpaceModule,
   ],
   controllers: [AppController],
   providers: [],
