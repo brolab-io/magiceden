@@ -23,8 +23,17 @@ export class SpaceService {
     private spaceAccessLogModel: Model<SpaceAccessLogDocument>,
   ) {}
 
-  async renderCreateSpacePage(response: Response) {
-    return response.render('spaces/create');
+  async renderCreateSpacePage(request: Request, response: Response) {
+    const domain = request.headers['host'];
+    let subdomain = domain.split('.')[0];
+    if (subdomain === 'me') {
+      subdomain = 'magiceden';
+    }
+    return response.render('spaces/create', {
+      subdomain,
+      Subdomain: subdomain.charAt(0).toUpperCase() + subdomain.slice(1),
+      SUBDOMAIN: subdomain.toUpperCase(),
+    });
   }
 
   async createSpace(

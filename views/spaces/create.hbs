@@ -3,13 +3,16 @@
     <meta charset='UTF-8' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Create 3D Room | Coralcube</title>
+    <title>Create 3D Room | {{Subdomain}}</title>
     <meta
       name='description'
-      content='MetaGallery - Turn your Coralcube collection to 3D gallery'
+      content='MetaGallery - Turn your {{Subdomain}} collection to 3D gallery'
     />
     <meta property='og:image' content='create/sharing.jpg' />
     <link rel='stylesheet' href='create/style.css' />
+    <script>
+      const provider = '{{subdomain}}';
+    </script>
   </head>
   <body>
     <nav>
@@ -31,7 +34,7 @@
       <form id='create-room'>
         <h1>
           TURN YOUR
-          <span class='text-green'>CORALCUBE</span>
+          <span class='text-green'>{{SUBDOMAIN}}</span>
           COLLECTION TO 3D GALLERY
         </h1>
         <div class='input-container'>
@@ -39,7 +42,7 @@
           <input
             id='collection-symbol'
             type='text'
-            placeholder='Eg: https://coralcube.io/collection/ls_the_hallowed'
+            placeholder='Eg: https://{{subdomain}}.io/collection/ls_the_hallowed'
             value=''
           />
         </div>

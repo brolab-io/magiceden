@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    if (!collection_link.startsWith('https://coralcube.io/collection/')) {
+    if (!collection_link.startsWith('https://' + provider + '.io/')) {
       alert('Collection link is invalid');
       return;
     }

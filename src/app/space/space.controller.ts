@@ -28,8 +28,8 @@ export class SpaceController {
   }
 
   @Get()
-  async getCreateSpacePage(@Res() response: Response) {
-    return this.spaceService.renderCreateSpacePage(response);
+  async getCreateSpacePage(@Req() request: Request, @Res() response: Response) {
+    return this.spaceService.renderCreateSpacePage(request, response);
   }
 
   @Post()
