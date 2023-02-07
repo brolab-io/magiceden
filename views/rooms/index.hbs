@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Solana Room</title>
+    <title>Algorand Room</title>
 
     <!-- Babylon.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
@@ -102,11 +102,10 @@
       var trigger = document.querySelector(".trigger");
       var iframe = document.querySelector("#iframe");
       function toggleModal(nftId) {
-        var nftLink = "https://magiceden.io/item-details/" + nftId;
-        if (nftId == 0) {
-          nftLink =
-            "https://solana.brolab.io/collections/NyXgPoqcioPJAmSkAvwLXuAvcfwsKbn2d1BKRroWCpJ/pools/premium-pool";
+        if (!nftId || nftId === 0){
+          return modal.classList.toggle("show-modal");
         }
+        var nftLink = "https://algoxnft.com/asset/" + nftId;        
         console.log(nftLink);
         iframe.setAttribute("src", nftLink);
         modal.classList.toggle("show-modal");
@@ -211,32 +210,7 @@
           result.meshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
           result.meshes[0].checkCollisions = true;
           result.checkCollisions = true;
-        });
-
-        const resultPromise2 = BABYLON.SceneLoader.ImportMeshAsync(
-          "",
-          "https://raw.githubusercontent.com/cuongpo/babylon/main/",
-          "solana-token.glb",
-          scene
-        );
-        resultPromise2.then((result) => {
-          result.meshes[0].position.x = -10;
-          result.meshes[0].position.y = 5;
-          result.meshes[0].position.z = 0;
-          result.meshes[0].scaling = new BABYLON.Vector3(40, 40, 40);
-          result.meshes[0].rotationQuaternion = undefined;
-          scene.beforeRender = () => {
-            result.meshes[0].rotation.y += 0.01;
-          };
-          console.log(result.meshes[0]);
-          scene.onPointerUp = function (evt, pickResult) {
-            if (pickResult.hit) {
-              if (pickResult.pickedMesh.name == "Cylinder") {
-                toggleModal(0);
-              }
-            }
-          };
-        });
+        });        
 
         // Collide
 

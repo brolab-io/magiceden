@@ -21,39 +21,40 @@ export class RoomController {
     @Req() req: Request,
     @Param('id') id: string,
   ) {
-    const { public_key, signature } = req.cookies;
-    const message = 'Sign in to brolab';
-    const room = await this.roomService.findRoomByCollectionSymbol(id);
-    if (!room) {
-      return res.render('error', {
-        title: 'Room not found',
-      });
-    }
-    if (public_key && signature) {
-      const isSigned = sign.detached.verify(
-        new TextEncoder().encode(message),
-        decode(signature),
-        decode(public_key),
-      );
-      if (isSigned) {
-        const hasAccess = await this.checkRoomAccess(room, public_key);
-        if (typeof hasAccess === 'string') {
-          return res.render('error', {
-            title: 'Access denied',
-            message: hasAccess,
-          });
-        }
-        if (!hasAccess) {
-          return res.render('error', {
-            title: 'Access denied',
-            message:
-              'Please buy NFTs and send royalties to the collection owner to access this room',
-          });
-        }
-        return res.render('rooms/index', { collection: id });
-      }
-    }
-    return res.render('rooms/connect');
+    // const { public_key, signature } = req.cookies;
+    // const message = 'Sign in to brolab';
+    // const room = await this.roomService.findRoomByCollectionSymbol(id);
+    // if (!room) {
+    //   return res.render('error', {
+    //     title: 'Room not found',
+    //   });
+    // }
+    // if (public_key && signature) {
+    //   const isSigned = sign.detached.verify(
+    //     new TextEncoder().encode(message),
+    //     decode(signature),
+    //     decode(public_key),
+    //   );
+    //   if (isSigned) {
+    //     const hasAccess = await this.checkRoomAccess(room, public_key);
+    //     if (typeof hasAccess === 'string') {
+    //       return res.render('error', {
+    //         title: 'Access denied',
+    //         message: hasAccess,
+    //       });
+    //     }
+    //     if (!hasAccess) {
+    //       return res.render('error', {
+    //         title: 'Access denied',
+    //         message:
+    //           'Please buy NFTs and send royalties to the collection owner to access this room',
+    //       });
+    //     }
+    //     return res.render('rooms/index', { collection: id });
+    //   }
+    // }
+    // return res.render('rooms/connect');
+    return res.render('rooms/index', { collection: id });
   }
 
   private async checkRoomAccess(room: RoomDocument, wallet: string) {

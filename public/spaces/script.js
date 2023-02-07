@@ -1,7 +1,7 @@
 /* global BABYLON, solana */
 
 async function getListedNftsByCollectionSymbol(collectionSymbol) {
-  const url = `https://solana.brolab.io/api/apiProxy?url=https://api-mainnet.magiceden.dev/v2/collections/${collectionSymbol}/listings?offset=0&limit=20`;
+  const url = `https://api.algoxnft.com/v1/collections/${collectionSymbol}/buy-it-now-listings`;
   const response = await fetch(url, {});
   const data = await response.json();
   return data;
@@ -99,7 +99,8 @@ function spawnNft(nft, scene) {
 
 async function spawnNFTs(scene) {
   const listedNfts = await getListedNftsByCollectionSymbol(collection);
-  const nfts = mapNftConfigsToNfts(listedNfts, nftConfigs);
-  nfts.forEach((nft) => spawnNft(nft, scene));
-  console.log(nfts);
+  // const nfts = mapNftConfigsToNfts(listedNfts, nftConfigs);
+  // nfts.forEach((nft) => spawnNft(nft, scene));
+  // console.log(nfts);
+  console.log(listedNfts);
 }

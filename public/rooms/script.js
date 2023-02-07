@@ -1,7 +1,7 @@
 /* global BABYLON, solana */
 
 async function getListedNftsByCollectionSymbol(collectionSymbol) {
-  const url = `https://solana.brolab.io/api/apiProxy?url=https://api-mainnet.magiceden.dev/v2/collections/${collectionSymbol}/listings?offset=0&limit=20`;
+  const url = `https://api.algoxnft.com/v1/collections/${collectionSymbol}/buy-it-now-listings`;
   const response = await fetch(url, {});
   const data = await response.json();
   return data;
@@ -76,7 +76,7 @@ function mapNftConfigsToNfts(listedNfts, nftConfigs) {
 
 function spawnNft(nft, scene) {
   const image = new BABYLON.StandardMaterial('test');
-  image.diffuseTexture = new BABYLON.Texture(nft.extra.img);
+  image.diffuseTexture = new BABYLON.Texture(nft.image_url);
 
   const playerPicture = BABYLON.MeshBuilder.CreatePlane('playerPicture', {
     height: 16,
@@ -92,7 +92,7 @@ function spawnNft(nft, scene) {
   playerPicture.rotation.y = BABYLON.Tools.ToRadians(ry);
   scene.onPointerObservable.add(function (evt) {
     if (evt.pickInfo.pickedMesh === playerPicture) {
-      toggleModal(nft.tokenMint);
+      toggleModal(nft.asset_id);
     }
   }, BABYLON.PointerEventTypes.POINTERPICK);
 }
@@ -101,5 +101,5 @@ async function spawnNFTs(scene) {
   const listedNfts = await getListedNftsByCollectionSymbol(collection);
   const nfts = mapNftConfigsToNfts(listedNfts, nftConfigs);
   nfts.forEach((nft) => spawnNft(nft, scene));
-  console.log(nfts);
+  // console.log(nfts);
 }

@@ -1,4 +1,4 @@
-import { Get, Controller, Render } from '@nestjs/common';
+import { Get, Controller, Render, Param, Query } from '@nestjs/common';
 
 @Controller()
 export class AppController {
@@ -6,5 +6,10 @@ export class AppController {
   @Render('index')
   root() {
     return { message: 'Hello world!' };
+  }
+
+  @Get('/proxy')
+  getProxy(@Query('url') url: string) {
+    return fetch(url).then((res) => res.json());
   }
 }

@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'magiceden',
+      name: 'algorand',
       script: './dist/index.js',
       args: '',
       exec_mode: 'fork',

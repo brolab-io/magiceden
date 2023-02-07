@@ -14,26 +14,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     e.preventDefault();
     const collection_link = form.elements['collection-symbol'].value;
     const collection_symbol = collection_link.split('/').pop();
-    const policy = form.elements['policy'].value * 1;
 
     if (!collection_symbol) {
       alert('Collection symbol is required');
       return;
     }
 
-    if (policy !== 0 && !policy) {
-      alert('Policy is required');
-      return;
-    }
-
-    if (policy < 0 || policy > 100) {
-      alert('Policy must be between 0 and 100');
-      return;
-    }
-
     await createRoom({
       collection_symbol,
-      policy,
+      policy: 0,
     });
 
     const roomURL = document.getElementById('room-url');
